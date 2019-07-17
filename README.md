@@ -1,4 +1,4 @@
-This repo refers to https://fruty.io/
+This repo refers to https://fruty.io/2019/07/17/state-of-the-art-2019-face-detection-with-retinaface-and-mxnet/
 
 ### General overview
 
