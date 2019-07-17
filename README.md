@@ -8,6 +8,7 @@ provided a working Dockerfile, and a python script to process videos.
 ### How to test
 
 NOTE: this has been tester on a ubuntu 16.04 machine, with a Nvidia GPU (GTI 1080), with docker, nvidia-docker installed, and all relevant drivers.
+We use in Dockerfile mxnet/python:1.4.1_gpu_cu100_py2 as base image. Feel free to go to https://hub.docker.com/r/mxnet/python to use a different tag, depending on your CUDA version.
 
 git clone https://github.com/francoisruty/fruty_face-detection.git
 
@@ -18,12 +19,11 @@ Those 2 files are the pre-trained network.
 Download input.mp4 from https://drive.google.com/open?id=18_ITpmE2Ejx5tns0OVQf19gvlhosdzJI
 Put it in a folder on your computer (see {{dataPath}} below)
 
-Put input
 
 cd fruty_face-detection
 docker build -t retinaface .
 docker run -it --runtime=nvidia -v {{dataPath}}:/data -v {{modelPath}}:/model retinaface /bin/bash    
-( {{dataPath}} is the local folder on your computer containing input.mp4, {{modelPath}} is the local folder on your computer containing the model parameters .params and .json)
+( replace {{dataPath}} with the local folder on your computer containing input.mp4, replace {{modelPath}} with the local folder on your computer containing the model parameters .params and .json)
 
 python script.py
 
