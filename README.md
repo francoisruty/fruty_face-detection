@@ -1,0 +1,31 @@
+This repo refers to https://fruty.io/
+
+### General overview
+
+We basically took the pre-trained RetinaFace network from https://github.com/deepinsight/insightface,
+provided a working Dockerfile, and a python script to process videos.
+
+### How to test
+
+NOTE: this has been tester on a ubuntu 16.04 machine, with a Nvidia GPU (GTI 1080), with docker, nvidia-docker installed, and all relevant drivers.
+
+git clone https://github.com/francoisruty/fruty_face-detection.git
+
+Download the .zip file from https://drive.google.com/file/d/1jxHW3YDYgYPPrXvMHpyWljjioe2JKGnU
+and put the 2 files (.params and .json) in a folder on your computer (see {{modelPath}} below).
+Those 2 files are the pre-trained network.
+
+Download input.mp4 from https://drive.google.com/open?id=18_ITpmE2Ejx5tns0OVQf19gvlhosdzJI
+Put it in a folder on your computer (see {{dataPath}} below)
+
+Put input
+
+cd fruty_face-detection
+docker build -t retinaface .
+docker run -it --runtime=nvidia -v {{dataPath}}:/data -v {{modelPath}}:/model retinaface /bin/bash    
+( {{dataPath}} is the local folder on your computer containing input.mp4, {{modelPath}} is the local folder on your computer containing the model parameters .params and .json)
+
+python script.py
+
+In my case it ran for approximately 15min, I was then able to open output.avi, and see the input footage with the human faces highlighted by a green square.
+

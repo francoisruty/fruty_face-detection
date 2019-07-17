@@ -7,13 +7,13 @@ import glob
 from retinaface import RetinaFace
 
 cap = cv2.VideoCapture()
-cap.open("/app/input.mkv")
+cap.open("/data/input.mp4")
 
 thresh = 0.8
 scales = [1024, 1980]
 
 gpuid = 0
-detector = RetinaFace('/app/R50/R50', 0, gpuid, 'net3')
+detector = RetinaFace('/model/R50', 0, gpuid, 'net3')
 
 width  = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
 height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
@@ -30,7 +30,7 @@ while True:
     (rv, im) = cap.read()   # im is a valid image if and only if rv is true
 
     if not rv: #we reached the end of video file, we write the modified frames to a new video file
-        filename = '/app/output.avi'
+        filename = '/data/output.avi'
         out = cv2.VideoWriter(filename, cv2.VideoWriter_fourcc(*'DIVX'), fps, size, True)
         for i in range(len(frames)):
             out.write(frames[i])
