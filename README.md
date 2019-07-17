@@ -21,8 +21,11 @@ Put it in a folder on your computer (see {{dataPath}} below)
 
 
 cd fruty_face-detection
+
 docker build -t retinaface .
+
 docker run -it --runtime=nvidia -v {{dataPath}}:/data -v {{modelPath}}:/model retinaface /bin/bash    
+
 ( replace {{dataPath}} with the local folder on your computer containing input.mp4, replace {{modelPath}} with the local folder on your computer containing the model parameters .params and .json)
 
 python script.py
